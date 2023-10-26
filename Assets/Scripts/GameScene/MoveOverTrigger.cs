@@ -31,7 +31,7 @@ public class MoveOverTrigger : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collider.TryGetComponent<Player>(out Player player))
+		if (collider.TryGetComponent<PlayerController>(out PlayerController player))
 		{
 			playerTransform = player.transform;
 			isDestroying = true;

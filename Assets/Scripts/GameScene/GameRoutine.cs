@@ -9,9 +9,9 @@ public class GameRoutine : MonoBehaviour
 	[SerializeField] private TMP_Text levelText;
 	[SerializeField] private UIHealthRender uiHealth;
 	[SerializeField] private UIProgressRenderer uiLevelProgressBar;
-	[SerializeField] private Player player;
+	[SerializeField] private PlayerController playerController;
 	[SerializeField] private GameTutorialWindow tutorial;
-	[SerializeField] private UIPreambleWindow uiCountDownPanel;
+	[SerializeField] private UIPreambleWindow preambleWindow;
 	[SerializeField] private UIResultWIndow uiGameWinLose;
 	[SerializeField] private Transform objectsContainer;
 	private int currentLifesAmount;
@@ -26,8 +26,8 @@ public class GameRoutine : MonoBehaviour
 	
 	public void Init()
 	{
-		player.DamageTriggerEntered += OnPlayerGotDamageHandler;
-		player.CoinCollected += OnPlayerAddedCoin;
+		playerController.DamageTriggerEntered += OnPlayerGotDamageHandler;
+		playerController.CoinCollected += OnPlayerAddedCoin;
 		ClearObstaclesContainer();
 		
 		CheckValidLevelValue();
@@ -59,14 +59,14 @@ public class GameRoutine : MonoBehaviour
 	
 	private void CountDown()
 	{
-		uiCountDownPanel.OnCountEndAction += OnCountDownEnd;
-		uiCountDownPanel.Play();
+		preambleWindow.OnCountEndAction += OnCountDownEnd;
+		preambleWindow.Play();
 	}
 	
 	private void OnCountDownEnd()
 	{
-		uiCountDownPanel.OnCountEndAction -= OnCountDownEnd;
-		player.Enable();
+		preambleWindow.OnCountEndAction -= OnCountDownEnd;
+		playerController.Enable();
 	}
 	
 	private void OnPlayerGotDamageHandler()
@@ -94,10 +94,10 @@ public class GameRoutine : MonoBehaviour
 			SaveLoad.Save();
 			uiGameWinLose.Show(true, levelMaxCoins);
 			
-			player.Disable();
+			playerController.Disable();
 			
-			player.DamageTriggerEntered -= OnPlayerGotDamageHandler;
-			player.CoinCollected -= OnPlayerAddedCoin;
+			playerController.DamageTriggerEntered -= OnPlayerGotDamageHandler;
+			playerController.CoinCollected -= OnPlayerAddedCoin;
 		}
 	}
 	
@@ -136,15 +136,15 @@ public class GameRoutine : MonoBehaviour
 	{
 		if (currentLifesAmount != 0)
 		{
-			player.PlayDamageCoroutine();
+			playerController.PlayDamageCoroutine();
 			ClearObstaclesContainer();
 		}
 		else
 		{
 			uiGameWinLose.Show(false, 0);
-			player.Disable();
-			player.DamageTriggerEntered -= OnPlayerGotDamageHandler;
-			player.CoinCollected -= OnPlayerAddedCoin;
+			playerController.Disable();
+			playerController.DamageTriggerEntered -= OnPlayerGotDamageHandler;
+			playerController.CoinCollected -= OnPlayerAddedCoin;
 		}
 	}
 	

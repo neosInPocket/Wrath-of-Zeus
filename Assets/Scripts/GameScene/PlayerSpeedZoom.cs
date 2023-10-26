@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerSpeedZoom : MonoBehaviour
 {
 	[SerializeField] private CinemachineVirtualCamera vCamera;
-	[SerializeField] private Player player;
+	[SerializeField] private PlayerController player;
 	[SerializeField] private float zoomSpeed;
 	[SerializeField] private float zoomInSpeed = 0.2f;
 	[SerializeField] private float maxZoom = 10;

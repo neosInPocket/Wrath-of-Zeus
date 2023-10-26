@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.VFX;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
 	[SerializeField] private float maxXSpeed;
 	[SerializeField] private float bouncePower;
 	[SerializeField] private float brakeSpeed = 2;
