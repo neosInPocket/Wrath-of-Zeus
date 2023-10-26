@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollectEffectPrefab: {fileID: 1887159375177322, guid: 3bc5000d25fb154448f96dd3c713e545, type: 3}
+  spriteRenderer: {fileID: 4308083333738856001}

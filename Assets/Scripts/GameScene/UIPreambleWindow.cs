@@ -5,18 +5,11 @@ using UnityEngine;
 
 public class UIPreambleWindow : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
 	public Action OnCountEndAction;
 	
-	public void Play()
+	public void RaiseOnCountEndAction()
 	{
-		StartCoroutine(PlayCountDown());
-	}
-	
-	private IEnumerator PlayCountDown()
-	{
-		animator.SetTrigger("show");
-		yield return new WaitForSeconds(3f);
 		OnCountEndAction?.Invoke();
+		gameObject.SetActive(false);
 	}
 }

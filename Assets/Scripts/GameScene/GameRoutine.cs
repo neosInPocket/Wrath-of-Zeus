@@ -14,13 +14,14 @@ public class GameRoutine : MonoBehaviour
 	[SerializeField] private UIPreambleWindow preambleWindow;
 	[SerializeField] private UIResultWIndow uiGameWinLose;
 	[SerializeField] private Transform objectsContainer;
+	[SerializeField] private ObjectSpawner objectSpawner;
 	private int currentLifesAmount;
 	private int currentPoints;
 	private int levelMaxPoints;
 	private int levelMaxCoins;
 	
 	private void Start()
-	{
+	{	
 		Init();
 	}
 	
@@ -29,6 +30,8 @@ public class GameRoutine : MonoBehaviour
 		playerController.DamageTriggerEntered += OnPlayerGotDamageHandler;
 		playerController.CoinCollected += OnPlayerAddedCoin;
 		ClearObstaclesContainer();
+		playerController.Initialize();
+		objectSpawner.Initialize();
 		
 		CheckValidLevelValue();
 		currentLifesAmount = SaveLoad.MaximumLifesUpgrade;
@@ -60,7 +63,7 @@ public class GameRoutine : MonoBehaviour
 	private void CountDown()
 	{
 		preambleWindow.OnCountEndAction += OnCountDownEnd;
-		preambleWindow.Play();
+		preambleWindow.gameObject.SetActive(true);
 	}
 	
 	private void OnCountDownEnd()
@@ -113,7 +116,7 @@ public class GameRoutine : MonoBehaviour
 		return (int)(currentLevel * Mathf.Log(currentLevel) + 6);
 	}
 	
-	public void ReturnToMainMenu()
+	public void GoToMainMenu()
 	{
 		SceneManager.LoadScene("MainMenuScene");
 	}
@@ -137,10 +140,11 @@ public class GameRoutine : MonoBehaviour
 		if (currentLifesAmount != 0)
 		{
 			playerController.PlayDamageCoroutine();
-			ClearObstaclesContainer();
+			playerController.ReturnToSaveBooster();
 		}
 		else
 		{
+			playerController.PlayDeathCoroutine();
 			uiGameWinLose.Show(false, 0);
 			playerController.Disable();
 			playerController.DamageTriggerEntered -= OnPlayerGotDamageHandler;

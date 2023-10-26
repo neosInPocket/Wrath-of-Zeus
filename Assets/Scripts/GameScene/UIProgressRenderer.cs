@@ -11,7 +11,7 @@ public class UIProgressRenderer : MonoBehaviour
 	
 	public void UpdateProgress(float currentProgress, float allProgress)
 	{
-		caption.text = currentProgress + "/" + allProgress;
+		caption.text = "Level " + SaveLoad.Level;
 		float value = currentProgress / allProgress;
 		innerImage.fillAmount = value;
 	}

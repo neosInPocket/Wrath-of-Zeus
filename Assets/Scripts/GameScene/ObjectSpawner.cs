@@ -37,6 +37,11 @@ public class ObjectSpawner : MonoBehaviour
 	
 	private SpawnableObject ChooseObjectToSpawn()
 	{
+		if (currentLastObject is MovingPlatform)
+		{
+			return boosterPrefab;
+		}
+		
 		var rnd = Random.Range(0, 1f);
 		
 		if (boosterSpawnChance >= rnd)
