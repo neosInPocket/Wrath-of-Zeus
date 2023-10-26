@@ -118,7 +118,7 @@ public class GameRoutine : MonoBehaviour
 	
 	public void GoToMainMenu()
 	{
-		SceneManager.LoadScene("MainMenuScene");
+		SceneManager.LoadScene("MenuScene");
 	}
 	
 	private int CalculateLevelCoins()

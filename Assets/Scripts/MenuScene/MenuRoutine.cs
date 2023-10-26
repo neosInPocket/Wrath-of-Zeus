@@ -7,7 +7,7 @@ public class MenuRoutine : MonoBehaviour
 {
 	private void Start()
 	{
-		ClearProgress();
+		//ClearProgress();
 	}
 	
 	public void LoadGameScene()

@@ -24,7 +24,7 @@ public class GameTutorialWindow : MonoBehaviour
 		TouchSimulation.Enable();
 		
 		container.SetActive(true);
-		text.text = "Welcome to Zaps!";
+		text.text = "Welcome to Wrath of Zeus!";
 		Touch.onFingerDown += Edit1;
 	}
 	

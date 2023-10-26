@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.VFX;
@@ -13,11 +12,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float maxXSpeed;
 	[SerializeField] private float bouncePower;
 	[SerializeField] private float brakeSpeed = 2;
-	[SerializeField] private PlayerBooster safeBooster; 
-	[SerializeField] private GameObject trail;
-	[SerializeField] private VisualEffect effect; 
+	[SerializeField] private PlayerBooster safeBooster;
+	[SerializeField] private VisualEffect visualEffect; 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameObject deathEffectPrefab; 
+	[SerializeField] private SoundRouter soundRouter; 
 	private float currentTime;
 	public float CurrentTime => currentTime;
 	private bool isMoving;
@@ -49,7 +48,7 @@ public class PlayerController : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		rb.angularVelocity = 0;
 		spriteRenderer.color = new Color(1, 1, 1, 1);
-		trail.gameObject.SetActive(true);
+		visualEffect.enabled = true;
 	}
 	
 	private void Update()
@@ -101,6 +100,7 @@ public class PlayerController : MonoBehaviour
 		{
 			rb.velocity = new Vector2(rb.velocity.x, bouncePower);
 			lastBooster = booster;
+			soundRouter.PlaySound();
 		}
 		
 		if (collider.TryGetComponent<Coin>(out Coin coin))
@@ -165,10 +165,10 @@ public class PlayerController : MonoBehaviour
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			effect.gameObject.SetActive(false);
+			visualEffect.enabled = false;
 			spriteRenderer.color = new Color(1, 1, 1, 0);
 			yield return new WaitForSeconds(.2f);
-			effect.gameObject.SetActive(true);
+			visualEffect.enabled = true;
 			spriteRenderer.color = new Color(1, 1, 1, 1);
 			yield return new WaitForSeconds(.2f);
 		}
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
 		var effect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity, transform);
 		rb.velocity = Vector2.zero;
 		rb.angularVelocity = 0;
-		trail.gameObject.SetActive(false);
+		visualEffect.enabled = false;
 		yield return new WaitForSeconds(1f);
 		Destroy(effect);
 	}

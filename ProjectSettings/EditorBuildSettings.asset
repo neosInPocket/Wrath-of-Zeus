@@ -11,4 +11,52 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene.unity
+    guid: 3ed9d8fdf26a20d458932573f7df8edc
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 1.unity
+    guid: 79a2e8c8583c5b54b973a6de8be467fa
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 2.unity
+    guid: 1135d08247d973b44abc8bad063e36a6
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 3.unity
+    guid: 8fd7d023ead60db44a60ef31fd74f5cd
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 4.unity
+    guid: 25d7dcfd7d6d4cc4da418d544bc270a0
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 5.unity
+    guid: 43200fdba4979674aaa2926229f850ff
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 6.unity
+    guid: 0bb8b64be3b97be479aeed2eb42c4a7f
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 7.unity
+    guid: 2933c833ad664eb479188a112a1c5c57
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 8.unity
+    guid: 1d3bebfe43f50d3438e78a9fc62a6b3c
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 9.unity
+    guid: 2901e91f2451d5840ad642d39526edc5
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 10.unity
+    guid: 622acac561952e443b012a5c883734d2
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 11.unity
+    guid: b2c9ccb1e00199b418416c172716d65d
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 12.unity
+    guid: ed32b7e839f5e5b4696e333a5313faed
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 13.unity
+    guid: 713a5ca1bd36493438f33e543c515c88
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 14.unity
+    guid: 4eeca547e3575af48a74caa391b1528f
+  - enabled: 1
+    path: Assets/Scenes/ShaderScene 15.unity
+    guid: 80fa5caf1c9d1d84d87a20f8e4c3ef7e
   m_configObjects: {}
