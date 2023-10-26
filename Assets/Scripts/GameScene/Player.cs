@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.VFX;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class Player : MonoBehaviour
@@ -11,16 +13,24 @@ public class Player : MonoBehaviour
 	[SerializeField] private float maxXSpeed;
 	[SerializeField] private float bouncePower;
 	[SerializeField] private float brakeSpeed = 2;
+	[SerializeField] private PlayerBooster safeBooster; 
+	[SerializeField] private GameObject trail;
+	[SerializeField] private VisualEffect effect; 
+	[SerializeField] private SpriteRenderer spriteRenderer;
 	private float currentTime;
 	public float CurrentTime => currentTime;
 	private bool isMoving;
 	public bool IsMoving => isMoving;
 	public Rigidbody2D RigidBody => rb;
+	public Action DamageTriggerEntered;
+	public Action CoinCollected;
+	private PlayerBooster lastBooster;
 	
 	private void Start()
 	{
 		EnhancedTouchSupport.Enable();
 		TouchSimulation.Enable();
+		lastBooster = safeBooster;
 		Enable();
 	}
 	
@@ -78,7 +88,20 @@ public class Player : MonoBehaviour
 		{
 			if (coin.IsCollected) return;
 			coin.PlayCollectEffect();
+			CoinCollected?.Invoke();
 		}
+		
+		if (collider.TryGetComponent<DamageTrigger>(out DamageTrigger damageTrigger))
+		{
+			DamageTriggerEntered?.Invoke();
+		}
+	}
+	
+	public void ReturnToSaveBooster()
+	{
+		rb.velocity = Vector2.zero;
+		rb.angularVelocity = 0;
+		transform.position = lastBooster.SafePosition.position;
 	}
 	
 	public void Enable()
@@ -98,5 +121,23 @@ public class Player : MonoBehaviour
 		EnhancedTouchSupport.Disable();
 		TouchSimulation.Disable();
 		Disable();
+	}
+	
+	public void PlayDamageCoroutine()
+	{
+		StartCoroutine(DamageEffect());
+	}
+	
+	private IEnumerator DamageEffect()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			effect.gameObject.SetActive(false);
+			spriteRenderer.color = new Color(0, 0, 0, 0);
+			yield return new WaitForSeconds(.2f);
+			effect.gameObject.SetActive(true);
+			spriteRenderer.color = new Color(0, 0, 0, 1);
+			yield return new WaitForSeconds(.2f);
+		}
 	}
 }

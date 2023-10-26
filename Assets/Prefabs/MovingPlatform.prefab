@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 9054016459183427247}
   - component: {fileID: 5803270461394007650}
   - component: {fileID: 2098323845818651921}
+  - component: {fileID: 1384977554725426068}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -320,3 +321,15 @@ MonoBehaviour:
   isStatic: 0
   rb: {fileID: 9054016459183427247}
   freq: 1.5
+--- !u!114 &1384977554725426068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5717801135303699387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404cc502a1c5f3c40a18e830442f88b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
